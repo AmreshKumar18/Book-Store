@@ -10,6 +10,8 @@ import Login from "./Page/Login";
 import Signup from "./Page/Signup";
 import { useAuth } from "./Context/Authprovider";
 import { Toaster } from "react-hot-toast";
+import DetailsPage from "./Page/DetailsPage";
+import Error from "./Page/Error";
 
 function App() {
   const [authUser, setAuthUser] = useAuth();
@@ -28,6 +30,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/product-details/:id" element={<DetailsPage />} />
+        <Route path="*" element={<Error />} />
       </Routes>
       <Toaster />
       <Footer />

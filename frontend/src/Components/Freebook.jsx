@@ -4,9 +4,11 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
+import { Link, useParams } from "react-router-dom";
 
 const Freebook = () => {
   const [book, setBook] = useState([]);
+
   useEffect(() => {
     const getBook = async () => {
       try {
@@ -67,8 +69,10 @@ const Freebook = () => {
       </div>
       <div className="max-w-screen-2xl container mx-auto md:px-20">
         <Slider {...settings} className="sm:px-8">
-          {book.map((item) => (
-            <Card item={item} key={item.id} />
+          {book.map((item, idx) => (
+            <Link to={`product-details/${item.id}`}>
+              <Card item={item} key={item.idx} />
+            </Link>
           ))}
         </Slider>
       </div>
