@@ -29,6 +29,7 @@ try {
 app.use("/book", BookRoute);
 app.use("/user", UserRoute);
 app.use("/contact", ContactRoute);
+app.use("/product-details", BookRoute);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

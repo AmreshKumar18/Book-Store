@@ -4,7 +4,7 @@ import axios from "axios";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Card from "./Card";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Freebook = () => {
   const [book, setBook] = useState([]);
@@ -70,8 +70,8 @@ const Freebook = () => {
       <div className="max-w-screen-2xl container mx-auto md:px-20">
         <Slider {...settings} className="sm:px-8">
           {book.map((item, idx) => (
-            <Link to={`product-details/${item.id}`}>
-              <Card item={item} key={item.idx} />
+            <Link to={`/product-details/${item._id}`}>
+              <Card item={item} key={idx} />
             </Link>
           ))}
         </Slider>

@@ -3,8 +3,11 @@ import Loading from "../Components/Loading";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useAuth } from "../Context/Authprovider";
+import { Navigate } from "react-router-dom";
 
 const Contact = () => {
+  const [authUser, setAuthUser] = useAuth();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -19,24 +22,27 @@ const Contact = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    const userInfo = {
-      fullname: data.fullname,
-      email: data.email,
-      description: data.description,
+ 
+    const onSubmit = async (data) => {
+      const userInfo = {
+        fullname: data.fullname,
+        email: data.email,
+        description: data.description,
+      };
+      await axios
+        .post("http://localhost:4000/contact", userInfo)
+        .then((res) => {
+          if (res.data) {
+            toast.success("Submit Successfully");
+            window.location.reload();
+          }
+        })
+        .catch((error) => {
+          toast.error(error.message);
+        });
     };
-    await axios
-      .post("http://localhost:4000/contact", userInfo)
-      .then((res) => {
-        if (res.data) {
-          toast.success("Submit Successfully");
-          window.location.reload();
-        }
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
+ 
+ 
 
   return (
     <>
@@ -45,7 +51,7 @@ const Contact = () => {
       ) : (
         <div className="max-w-screen-2xl container mx-auto md:px-20 pt-28 flex flex-col-reverse md:flex-row justify-between">
           <div className=" md:w-1/2">
-            <form className="card-body py-0" onSubmit={handleSubmit(onSubmit)}>
+            <form className="card-body py-0">
               <div className="form-control">
                 <h1 className="font-semibold text-2xl">Get in Touch !</h1>
                 <label className="label">

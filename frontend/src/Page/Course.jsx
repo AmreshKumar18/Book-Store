@@ -3,11 +3,11 @@ import Card from "../Components/Card";
 import { Link } from "react-router-dom";
 import Loading from "../Components/Loading";
 import axios from "axios";
-import { useAuth } from "../Context/Authprovider";
+// import { useAuth } from "../Context/Authprovider";
 
 const Course = () => {
-  // const [authUser, setAuthUser] = useAuth();
-  // console.log(authUser);
+  const [search, setSearch] = useState("");
+  // console.log(search);
   const [book, setBook] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -16,6 +16,7 @@ const Course = () => {
         const res = await axios.get("http://localhost:4000/book");
         // console.log(res.data);
         setBook(res.data);
+        setSearch(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -48,6 +49,28 @@ const Course = () => {
           <Link to="/">
             <button className="btn btn-secondary mt-4">Back To Home</button>
           </Link>
+          <div className=" mt-10 w-1/2 m-auto">
+            <label className="input input-bordered flex items-center gap-2">
+              <input
+                type="text"
+                className="grow"
+                placeholder="Search"
+                // onChange={filterItems}
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="w-4 h-4 opacity-70"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </label>
+          </div>
         </div>
         {isLoading ? (
           <Loading />
