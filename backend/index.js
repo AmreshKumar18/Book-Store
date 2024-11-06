@@ -1,10 +1,10 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
-const BookRoute = require("./Route/BookRoute");
-const UserRoute = require("./Route/UserRoute");
-const ContactRoute = require("./Route/ContactRoute");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+import BookRoute from "./Route/BookRoute.js";
+import UserRoute from "./Route/UserRoute.js";
+import ContactRoute from "./Route/ContactRoute.js";
 const app = express();
 
 app.use(cors());

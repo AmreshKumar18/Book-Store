@@ -1,6 +1,6 @@
-const Contact = require("../Model/Contact");
+import { Contact } from "../Model/Contact.js";
 
-const contact = async (req, res) => {
+export const contact = async (req, res) => {
   try {
     const { fullname, email, description } = req.body;
     const getContact = new Contact({
@@ -14,5 +14,3 @@ const contact = async (req, res) => {
     return res.status(500).json({ error: "Something went wrong !!" });
   }
 };
-
-module.exports = contact;

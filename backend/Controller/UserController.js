@@ -1,7 +1,7 @@
-const User = require("../Model/User");
-const bcryptjs = require("bcryptjs");
+import { User } from "../Model/User.js";
+import bcryptjs from "bcryptjs";
 
-const signup = async (req, res) => {
+export const signup = async (req, res) => {
   try {
     const { fullname, email, password } = req.body;
     const user = await User.findOne({ email });
@@ -30,7 +30,7 @@ const signup = async (req, res) => {
 };
 
 //login here
-const login = async (req, res) => {
+export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -52,5 +52,3 @@ const login = async (req, res) => {
     return res.status(500).json({ message: "internal error during login" });
   }
 };
-
-module.exports = login;

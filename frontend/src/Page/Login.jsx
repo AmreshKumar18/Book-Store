@@ -25,7 +25,7 @@ const Login = () => {
           setTimeout(() => {
             window.location.reload();
             localStorage.setItem("Users", JSON.stringify(res.data.user));
-          }, 500);
+          }, 1000);
           navigate("/");
         }
       })
@@ -76,7 +76,6 @@ const Login = () => {
               <input
                 type="password"
                 className="grow"
-                value="password"
                 placeholder="password"
                 {...register("password", { required: true })}
               />

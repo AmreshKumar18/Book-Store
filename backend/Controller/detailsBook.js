@@ -1,6 +1,6 @@
-const Book = require("../Model/Book");
+import { Book } from "../Model/Book.js";
 
-const detailsBook = async (req, res) => {
+export const detailsBook = async (req, res) => {
   try {
     const { id } = req.params;
     const detail = await Book.findById(id);
@@ -9,5 +9,3 @@ const detailsBook = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-module.exports = detailsBook;

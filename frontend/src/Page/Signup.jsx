@@ -86,7 +86,6 @@ const Signup = () => {
               <input
                 type="password"
                 className="grow"
-                value="password"
                 placeholder="password"
                 {...register("password", { required: true })}
               />
